@@ -19,10 +19,10 @@
 			$this->load->view('front/footer');			
 		}
 
-		public function get_jalan()
+		public function get_pengaduan()
 		{
 			$html = '';
-			$pre = $this->MasterModel->get_jalan();
+			$pre = $this->PengaduanModel->get_pengaduan();
 
 			if ($pre->num_rows() > 0) {
 				$no = 1;
@@ -30,13 +30,11 @@
 					$html .= '
 								<tr>
 				                    <td class="text-center">'.$no++.'</td>
+				                    <td>'.$dt->nama_lengkap.'</td>
 				                    <td>'.$dt->nama_jalan.'</td>
-				                    <td>'.$dt->kecamatan.'</td>
-				                    <td>'.$dt->kelurahan.'</td>
+				                    <td>'.$dt->keterangan.'</td>
 				                    <td><a href="https://www.google.com/maps/place/'.$dt->lat.','.$dt->lng.'" target="_blank">'.$dt->lat.', '.$dt->lng.'</a></td>
-				                    <td>
-				                    	<button class="btn btn-xs btn-warning btn-pengaduan" data-id="'.$dt->id_jalan.'" data-nama="'.$dt->nama_jalan.'" data-kecamatan="'.$dt->kecamatan.'" data-kelurahan="'.$dt->kelurahan.'" data-lat="'.$dt->lat.'" data-lng="'.$dt->lng.'"><i class="far fa-paper-plane"></i></button>
-				                    </td>
+				                    <td>'.date('d-m-y H:i:s', strtotime($dt->created_at)).'</td>
 				                </tr>
 					';
 				}
@@ -53,11 +51,13 @@
 
 		public function kirim_pengaduan()
 		{
-			$data['id_jalan'] = $this->input->post('id_jalan');
+			$data['nama_jalan'] = $this->input->post('nama_jalan');
 			$data['nama_lengkap'] = $this->input->post('nama_lengkap');
 			$data['hp'] = $this->input->post('hp');
 			$data['email'] = $this->input->post('email');
 			$data['keterangan'] = $this->input->post('keterangan');
+			$data['lat'] = $this->input->post('lat');
+			$data['lng'] = $this->input->post('lng');
 
 			$config['upload_path'] = './assets/img/pengaduan';
 	        $config['allowed_types'] = 'jpg|png|jpeg';

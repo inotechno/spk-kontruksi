@@ -45,6 +45,11 @@
 		{
 			return $this->db->update('nilai_lhr', $data, array('id_jalan' => $id));
 		}
+
+		function delete_nilai_lhr($id)
+		{
+			return $this->db->delete('nilai_lhr', array('id_jalan' => $id));
+		}
 	
 	}
 	

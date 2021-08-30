@@ -107,6 +107,14 @@
 			$('#modal-update-nilai-lhr').modal('show');
 		});	
 
+		$('#table-body-lhr').on('click', '.delete_table', function() {
+			var nama = $(this).attr('data-nama');
+			var id = $(this).attr('data-id');
+
+			$('[name="id_jalan_delete"]').val(id);
+			$('#modal-delete-nilai-lhr').modal('show');
+		});	
+
 		$('#daftar-lhr').on('click', '.edit_kriteria_lhr', function() {
 			var nama = $(this).attr('data-nama');
 			var id = $(this).attr('data-id');
@@ -193,6 +201,29 @@
 
 	                $('#form-update-nilai-lhr')[0].reset();
 	                $('#modal-update-nilai-lhr').modal('hide');
+	                nilai_lhr();
+	    		}
+	    	});
+	    	
+	    	return false;
+	    });
+
+	    $('#form-delete-nilai-lhr').submit(function() {
+	    	var data = $(this).serialize();
+	    	$.ajax({
+	    		url: '<?= base_url('Table_LHR/delete_nilai_lhr') ?>',
+	    		type: 'POST',
+	    		dataType: 'JSON',
+	    		data:data,
+	    		success:function (response) {
+	    			if (response.status == 'success') {
+	                  toastr.success(response.message);
+	                }else{
+	                  toastr.error(response.message);
+	                }
+
+	                $('#form-delete-nilai-lhr')[0].reset();
+	                $('#modal-delete-nilai-lhr').modal('hide');
 	                nilai_lhr();
 	    		}
 	    	});

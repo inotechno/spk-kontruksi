@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 29 Agu 2021 pada 09.36
+-- Waktu pembuatan: 30 Agu 2021 pada 11.37
 -- Versi server: 10.4.20-MariaDB
 -- Versi PHP: 8.0.9
 
@@ -111,8 +111,9 @@ CREATE TABLE `jalan` (
 --
 
 INSERT INTO `jalan` (`id_jalan`, `nama_jalan`, `kecamatan`, `kelurahan`, `lat`, `lng`, `created_by`, `created_at`) VALUES
-(2, 'Jalan Purwakarta - Pengarengan', 'PENGARENGAN', 'PENGARENGAN', '-6.1841307', '106.195847', 1, '2021-04-17 00:10:46'),
-(3, 'Jalan Sini', 'TAMANSARI', 'PENGARENGAN', '-6.1650385', '106.179808', 1, '2021-04-17 22:36:16');
+(2, 'Jalan Purwakarta - Pengarengan', 'PENGARENGAN', 'PENGARENGAN', '-6.1604997', '106.243934', 1, '2021-04-17 00:10:46'),
+(3, 'Jalan Sini', 'TAMANSARI', 'PENGARENGAN', '-6.1650385', '106.179808', 1, '2021-04-17 22:36:16'),
+(4, 'Jalan Raya Cilegon', 'TAKTAKAN', 'DRANGONG', '-6.1084526', '106.139735', 1, '2021-08-30 14:43:31');
 
 -- --------------------------------------------------------
 
@@ -229,8 +230,7 @@ CREATE TABLE `nilai_lhr` (
 --
 
 INSERT INTO `nilai_lhr` (`id_lhr`, `id_jalan`, `jalan_kaki`, `pikulan/gendongan`, `sepeda`, `sepeda+barang`, `becak`, `sepeda_motor`, `pickup_penumpang`, `pickup_barang`, `bis`, `truk_ringan`, `truk_sedang`, `truk_berat`, `sedan`) VALUES
-(6, 3, 20, 10, 10, 10, 30, 40, 30, 20, 10, 15, 20, 10, 20),
-(7, 2, 10, 20, 20, 10, 15, 15, 20, 20, 30, 10, 10, 15, 5);
+(6, 3, 20, 10, 10, 10, 30, 40, 30, 20, 10, 15, 20, 10, 20);
 
 -- --------------------------------------------------------
 
@@ -240,13 +240,15 @@ INSERT INTO `nilai_lhr` (`id_lhr`, `id_jalan`, `jalan_kaki`, `pikulan/gendongan`
 
 CREATE TABLE `pengaduan` (
   `id` int(11) NOT NULL,
-  `id_jalan` int(11) NOT NULL,
+  `nama_jalan` varchar(50) NOT NULL,
   `nama_lengkap` varchar(30) NOT NULL,
   `hp` varchar(16) DEFAULT NULL,
   `email` varchar(30) DEFAULT NULL,
   `keterangan` text NOT NULL,
   `img1` text DEFAULT NULL,
   `img2` text DEFAULT NULL,
+  `lat` varchar(10) NOT NULL,
+  `lng` varchar(10) NOT NULL,
   `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -254,11 +256,12 @@ CREATE TABLE `pengaduan` (
 -- Dumping data untuk tabel `pengaduan`
 --
 
-INSERT INTO `pengaduan` (`id`, `id_jalan`, `nama_lengkap`, `hp`, `email`, `keterangan`, `img1`, `img2`, `created_at`) VALUES
-(10, 3, 'Unicorn Gift', '089676490971', 'unicorngift15@gmail.com', 'LALALA', '9eeb3e97-3280-4d59-917c-093ccc4849e0.jpg', '9eeb3e97-3280-4d59-917c-093ccc4849e01.jpg', '2021-05-23 14:14:38'),
-(11, 3, 'Unicorn Gift', '089676490971', '2ahmadfatoni0@gmail.com', 'jhkhkj', 'accounting.jpg', NULL, '2021-05-23 14:36:26'),
-(12, 2, 'Unicorn Gift', '089676490971', 'ptfpl@ymail.com', 'asdasdasd', '', '', '2021-05-23 14:44:03'),
-(13, 3, 'Unicorn Gift', '089676490971', 'unicorngift15@gmail.com', 'asdasdas', '66e4a26e-7bae-4376-80c1-5627ea485d46.jpg', 'abstract-blue-geometric-shapes-background_1035-17545.jpg', '2021-05-23 14:46:10');
+INSERT INTO `pengaduan` (`id`, `nama_jalan`, `nama_lengkap`, `hp`, `email`, `keterangan`, `img1`, `img2`, `lat`, `lng`, `created_at`) VALUES
+(10, 'Jalan Ponogoro', 'Unicorn Gift', '089676490971', 'unicorngift15@gmail.com', 'LALALA', '9eeb3e97-3280-4d59-917c-093ccc4849e0.jpg', '9eeb3e97-3280-4d59-917c-093ccc4849e01.jpg', '0', '0', '2021-05-23 14:14:38'),
+(13, 'Jalan Semuanya', 'Unicorn Gift', '089676490971', 'unicorngift15@gmail.com', 'asdasdas', '66e4a26e-7bae-4376-80c1-5627ea485d46.jpg', 'abstract-blue-geometric-shapes-background_1035-17545.jpg', '0', '0', '2021-05-23 14:46:10'),
+(14, 'Jln Legok Assalam', 'Ahmad Fatoni', '089676490971', 'achmad.fatoni33@gmail.com', 'Jalan Rusak Bolong', 'feed1.png', 'Picture1.png', '-6.0769589', '106.114269', '2021-08-30 15:59:50'),
+(15, 'JLN Ciceri Indah', 'Waluyo', '089676490971', 'waluyo@gmail.com', 'Jlan tidak teratur', '9eeb3e97-3280-4d59-917c-093ccc4849e02.jpg', 'Picture11.png', '-6.1079894', '106.139672', '2021-08-30 16:02:15'),
+(16, 'Jalan Raya Cilegon', 'Fatoni', '081818181', 'ptfpl@ymail.com', 'Jalan penuh dengan lobang', '9eeb3e97-3280-4d59-917c-093ccc4849e03.jpg', 'abstract-blue-geometric-shapes-background_1035-175451.jpg', '-6.0790382', '106.111029', '2021-08-30 16:09:58');
 
 -- --------------------------------------------------------
 
@@ -389,7 +392,7 @@ ALTER TABLE `bobot_kriteria`
 -- AUTO_INCREMENT untuk tabel `jalan`
 --
 ALTER TABLE `jalan`
-  MODIFY `id_jalan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_jalan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `kriteria`
@@ -419,7 +422,7 @@ ALTER TABLE `nilai_lhr`
 -- AUTO_INCREMENT untuk tabel `pengaduan`
 --
 ALTER TABLE `pengaduan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`

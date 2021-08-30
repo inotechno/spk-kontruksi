@@ -180,8 +180,11 @@
 							$total_nilai = array_sum($total)*1.28; 
 						}
 					$html .= '<td>'.$total_nilai.'</td>
-						<td><button class="btn btn-tool edit_table" data-nama="'.$dt->nama_jalan.'" data-id="'.$dt->id_jalan.'"><i class=" fas fa-edit text-danger"></i></button></td>
-							</tr>';
+							<td>
+								<button class="btn btn-tool edit_table" data-nama="'.$dt->nama_jalan.'" data-id="'.$dt->id_jalan.'"><i class=" fas fa-edit text-danger"></i></button>
+								<button class="btn btn-tool delete_table" data-nama="'.$dt->nama_jalan.'" data-id="'.$dt->id_jalan.'"><i class=" fas fa-trash-alt text-danger"></i></button>
+							</td>
+						</tr>';
 				}
 			}else{
 				$html .= '
@@ -280,6 +283,19 @@
 				$data[str_replace(' ', '_', strtolower($kr->nama_kriteria_lhr))] = $this->input->post(str_replace(' ', '_', strtolower($kr->nama_kriteria_lhr).'_update'));
 			}
 			$update = $this->Table_LHRModel->update_nilai_lhr($data['id_jalan'], $data);
+			$response = array(
+				'status' => 'success',
+				'message' => 'Data Berhasil Diubah'
+			);
+
+			echo json_encode($response);
+		}
+
+		public function delete_nilai_lhr()
+		{
+			$id_jalan = $this->input->post('id_jalan_delete');
+			$get = $this->Table_LHRModel->delete_nilai_lhr($id_jalan);
+
 			$response = array(
 				'status' => 'success',
 				'message' => 'Data Berhasil Diubah'

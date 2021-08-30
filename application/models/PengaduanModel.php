@@ -5,9 +5,7 @@
 
 		function get_pengaduan()
 		{
-			$this->db->select('pengaduan.*, jalan.id_jalan, jalan.nama_jalan');
 			$this->db->from('pengaduan');
-			$this->db->join('jalan', 'jalan.id_jalan = pengaduan.id_jalan', 'left');
 			return $this->db->get();
 		}
 	

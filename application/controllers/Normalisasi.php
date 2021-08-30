@@ -7,6 +7,7 @@
 		{
 			parent::__construct();
 			$this->load->model('NormalisasiModel');
+			$this->load->model('Table_LHRModel');
 			if ($this->session->userdata('status') != 'login') {
 				redirect(base_url("Login",'refresh'));
 			}
@@ -54,9 +55,24 @@
 		public function generate_field_jalan()
 		{
 			$html = '';
-			$jalan = $this->NormalisasiModel->get_jalan();
-			foreach ($jalan as $jl) {
-				$html .= '<option value="'.$jl->id_jalan.'">'.$jl->nama_jalan.'</option>';
+
+			$pre = $this->Table_LHRModel->get_lhr();
+			$kriteria = $this->Table_LHRModel->get_kriteria();
+			$field = array();
+			$total = array();
+			$total_nilai = 0;
+
+			if ($pre->num_rows() > 0) {
+				$no = 1;
+				foreach ($pre->result() as $d => $dt) {
+
+					foreach ($kriteria->result() as $k => $kr) {
+						$field = str_replace(' ', '_', strtolower($kr->nama_kriteria_lhr));
+						$total[$k] = $dt->$field;
+						$total_nilai = array_sum($total)*1.28; 
+					}
+					$html .= '<option value="'.$dt->id_jalan.'">'.$dt->nama_jalan.' | Nilai LHR = '.$total_nilai.'</option>';
+				}
 			}
 
 			echo $html;

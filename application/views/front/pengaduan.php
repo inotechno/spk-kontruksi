@@ -3,22 +3,25 @@
         <div class="container px-4 px-lg-5">
             <!-- Heading Row-->
             <div class="row gx-4 gx-lg-5 align-items-center my-5">
-                <table class="table" id="jalan">
+                <div class="col-md-2">
+                    <button type="button" id="btn-addPengaduan" class="btn btn-primary" data-toggle="modal" data-target="#modal-addPengaduan"><span class="fa fa-plus"></span> Tambah</button>
+                </div>
+                <table class="table" id="pengaduan">
                     <thead>
                         <th>No</th>
+                        <th>Nama Lengkap</th>
                         <th>Nama Jalan</th>
-                        <th>Kecamatan</th>
-                        <th>Kelurahan</th>
+                        <th>Keterangan</th>
                         <th>Koordinat</th>
-                        <th>Pengaduan</th>
+                        <th>Waktu</th>
                     </thead>
-                    <tbody id="table-body-jalan"></tbody>
+                    <tbody id="table-body-pengaduan"></tbody>
                 </table>
             </div>
            
         </div>
 
-        <div class="modal fade" id="modal-pengaduan" aria-hidden="true" style="display: none;">
+        <div class="modal fade" id="modal-addPengaduan" aria-hidden="true" style="display: none;">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
                 <div class="modal-header">
@@ -29,46 +32,24 @@
                 </div>
                 <div class="modal-body">
                   <form id="form-pengaduan" method="POST">
-                    <input type="hidden" name="id_jalan">
-                    <div class="form-group">
-                      <label>Nama Jalan</label>
-                      <input type="text" name="nama_jalan" class="form-control" readonly="">
-                    </div>
                     <div class="row">
-                      <div class="col-md">
-                        <div class="form-group">
-                          <label>Kecamatan</label>
-                          <input type="text" name="kecamatan" class="form-control" readonly="">
-                        </div>
-                      </div>
-                      <div class="col-md">
-                        <div class="form-group">
-                          <label>Kelurahan</label>
-                          <input type="text" name="kelurahan" class="form-control" readonly="">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row mt-2">
-                      <div class="col-md">
-                        <div class="form-group">
-                          <label>Lattitude</label>
-                          <input type="text" name="lat" id="lat" class="form-control" readonly="" readonly="">
-                        </div>
-                      </div>
-                      <div class="col-md">
-                        <div class="form-group">
-                          <label>Longitude</label>
-                          <input type="text" name="lng" id="lng" class="form-control" readonly="" readonly="">
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row mt-2">
                         <div class="col-md">
                             <div class="form-group">
                                 <label>Nama Lengkap</label>
                                 <input type="text" name="nama_lengkap" class="form-control" required="">
                             </div>
                         </div>
+
+                        <div class="col-md">
+                            <div class="form-group">
+                              <label>Nama Jalan</label>
+                              <input type="text" name="nama_jalan" class="form-control" required="">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-2">
+                        
                         <div class="col-md">
                             <div class="form-group">
                                 <label>HP</label>
@@ -111,6 +92,25 @@
                               </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div id="googleMap" style="width: 100%; height: 380px;"></div>
+                    </div>
+
+                    <div class="row mt-2">
+                      <div class="col-md">
+                        <div class="form-group">
+                          <label>Lattitude</label>
+                          <input type="text" name="lat" id="lat" class="form-control" readonly="" readonly="">
+                        </div>
+                      </div>
+                      <div class="col-md">
+                        <div class="form-group">
+                          <label>Longitude</label>
+                          <input type="text" name="lng" id="lng" class="form-control" readonly="" readonly="">
+                        </div>
+                      </div>
                     </div>
 
                     <button type="submit" class="btn btn-sm btn-primary float-right mt-2">Simpan</button>

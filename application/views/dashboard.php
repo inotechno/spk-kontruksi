@@ -48,7 +48,9 @@
                     <th>Nama Lengkap</th>
                     <th>Hp</th>
                     <th>Email</th>
+                    <th>Koordinat</th>
                     <th>Keterangan</th>
+                    <th>Waktu</th>
                   </thead>
                   <tbody id="table-body-pengaduan">
                   </tbody>

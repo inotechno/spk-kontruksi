@@ -133,7 +133,9 @@
 				                    <td>'.$dt->nama_lengkap.'</td>
 				                    <td>'.$dt->hp.'</td>
 				                    <td>'.$dt->email.'</td>
+				                    <td><a href="https://www.google.com/maps/place/'.$dt->lat.','.$dt->lng.'" target="_blank">'.$dt->lat.', '.$dt->lng.'</a></td>
 				                    <td>'.$dt->keterangan.'</td>
+				                    <td>'.date('d-m-y H:i:s', strtotime($dt->created_at)).'</td>
 				                </tr>
 					';
 				}
