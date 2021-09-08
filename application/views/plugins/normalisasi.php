@@ -17,6 +17,25 @@
         });
     }
 
+    function delete_normalisasi(id) {
+        $.ajax({
+          url: '<?= base_url('Normalisasi/delete_normalisasi') ?>',
+          type: 'GET',
+          dataType: 'JSON',
+          data:{id:id},
+          success:function (response) {
+              if (response.status == 'success') {
+                toastr.success(response.message);
+              }else{
+                toastr.error(response.message);
+              }
+
+              table_normalisasi();
+          }
+        });
+        
+      }
+
   	function generate_field_jalan() {
         $.ajax({
             url: '<?= base_url('Normalisasi/generate_field_jalan') ?>',
@@ -92,6 +111,17 @@
         $('[name="id_bobot_jalan"]').val(id);
         $('[name="id_jalan_update"]').val(id_jalan);
         $('#modal-update-normalisasi').modal('show');
+
+    });
+
+    $('#table-body-normalisasi').on('click', '.delete_normalisasi', function() {
+        var id = $(this).attr('data-id');
+        var id_jalan = $(this).attr('data-nama');
+
+        toastr.warning('Apakah Anda Yakin Ingin Menghapus Normalisasi ini <br><button class="btn btn-danger btn-sm" id="delete-normalisasi" data-id="'+id+'">Yes</button><button class="btn btn-primary btn-sm">No</button>');
+          $('#delete-normalisasi').click(function() {
+            delete_normalisasi(id);
+          });
 
     });
 

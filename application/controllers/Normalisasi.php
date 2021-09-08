@@ -18,7 +18,7 @@
 			$def['title'] = 'Normalisasi | SPK Kontruksi';
 			$this->breadcrumb->add('Normalisasi', 'normalisasi');
 			$def['thead'] = $this->NormalisasiModel->get_kriteria();
-
+			
 			$this->load->view('partials/head', $def);
 			$this->load->view('partials/navbar');
 			$this->load->view('partials/sidebar');
@@ -44,7 +44,10 @@
 			                    	$html .= '<td>'.$jl->$nama_kriteria.'</td>';
 			                    }
 				$html .=   '	<td>
-									<button class="btn btn-xs btn-warning update_normalisasi" data-id="'.$jl->id_bobot_jalan.'" data-nama="'.$jl->id_jalan.'"><span class="fas fa-pencil-alt"></span></button>
+											<button class="btn btn-xs btn-warning update_normalisasi" data-id="'.$jl->id_bobot_jalan.'" data-nama="'.$jl->id_jalan.'"><span class="fas fa-pencil-alt"></span></button>
+								
+											<button class="btn btn-xs btn-danger delete_normalisasi" data-id="'.$jl->id_bobot_jalan.'" data-nama="'.$jl->id_jalan.'"><span class="fas fa-trash-alt"></span></button>
+										
 								</td>
 							</tr>';
 			}
@@ -156,6 +159,25 @@
 				$response = array(
 					'status' => 'error',
 					'message' => 'Data Normalisasi Gagal Diubah !'
+				);
+			}
+
+			echo json_encode($response);
+		}
+
+		public function delete_normalisasi()
+		{
+			$id = $this->input->get('id');
+			$pre = $this->NormalisasiModel->delete_normalisasi($id);
+			if ($pre) {
+				$response = array(
+					'status' => 'success',
+					'message' => 'Data Normalisasi Berhasil Dihapus'
+				);
+			}else{
+				$response = array(
+					'status' => 'error',
+					'message' => 'Data Normalisasi Gagal Dihapus !'
 				);
 			}
 

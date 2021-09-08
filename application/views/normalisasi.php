@@ -24,7 +24,7 @@
                         <th><?= $kr->nama_kriteria ?></th>
                       <?php } 
                     ?>
-                    <th style="width: 5px;">X</th>
+                    <th style="width: 50px;">X</th>
                   </thead>
                   <tbody id="table-body-normalisasi"></tbody>
                 </table>

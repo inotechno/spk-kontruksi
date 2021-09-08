@@ -29,6 +29,11 @@
 			return $this->db->update('bobot_jalan', $data, array('id_bobot_jalan' => $id));
 		}
 
+		function delete_normalisasi($id)
+		{
+			return $this->db->delete('bobot_jalan', array('id_bobot_jalan' => $id));
+		}
+
 		function get_normalisasi()
 		{
 			$this->db->select('jalan.nama_jalan, bobot_jalan.*');
@@ -59,7 +64,6 @@
 		{
 			$this->db->select('jalan.nama_jalan, bobot_jalan.*');
 			$this->db->join('jalan', 'jalan.id_jalan = bobot_jalan.id_jalan', 'left');
-			$this->db->limit(3);
 			return $this->db->get('bobot_jalan')->result();
 		}
 
