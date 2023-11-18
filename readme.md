@@ -29,7 +29,7 @@ Aplikasi ini bertujuan untuk mendukung pengambilan keputusan dalam menentukan ko
 
 ### 4. Master Data User
 
-![Master Data User](screenshots/master_data_user.png)
+![Master Data User](screenshots/master_data_users.png)
 
 ### 5. Table LHR
 
